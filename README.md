@@ -1,1 +1,1 @@
-Just a personal template for my minecraft mods.
+A minecraft mod that makes the view distance dynamic to save resources

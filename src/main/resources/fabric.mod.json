@@ -1,34 +1,36 @@
 {
     "schemaVersion": 1,
-    "name": "Template Mod",
-    "id": "ehtemp",
+    "name": "Dynamic View Distance",
+    "id": "ehdynview",
     "version": "${version}",
-    "icon": "assets/ehtemp/icon.png",
-    "description": "Lorem ipsum",
+    "icon": "assets/ehdynview/icon.png",
+    "description": "A minecraft mod that makes the view distance dynamic to save resourcess",
     "authors": [
         "Einholz"
     ],
     "contact": {
         "homepage": "https://www.curseforge.com/members/albert_einholz/projects",
-        "sources": "https://github.com/Albert-Einholz"
+        "sources": "https://github.com/Albert-Einholz/Dynamic-View-Distance"
     },
     "license": "Apache-2.0 Licence",
     "environment": "*",
     "entrypoints": {
         "main": [
-            "de.einholz.ehtemp.TemplateMod"
+            "de.einholz.ehdynview.DynView"
         ],
         "client": [
-            "de.einholz.ehtemp.TemplateMod"
+            "de.einholz.ehdynview.DynView"
+        ],
+        "server": [
+            "de.einholz.ehdynview.DynView"
         ]
     },
-    "mixins": [],
+    "mixins": [
+        "ehdynview.mixins.json"
+    ],
     "depends": {
         "fabricloader": ">=0.14.7",
         "fabric": "*",
         "minecraft": "1.19.x"
-    },
-    "suggests": {
-        "another-mod": "*"
     }
 }

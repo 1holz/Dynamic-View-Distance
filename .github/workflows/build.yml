@@ -11,13 +11,26 @@ jobs:
     strategy:
       matrix:
         # Use these Java versions
-        java: [17]
+        java: [
+          17
+        ]
         # and run on both Linux and Windows
-        os: [ubuntu-latest, windows-latest, macos-latest]
+        os: [
+          ubuntu-latest,
+          windows-latest,
+          #macos-latest
+        ]
     runs-on: ${{ matrix.os }}
     steps:
       - name: checkout repository
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: check for errors.
+        if: ${{ runner.os == 'Linux' && matrix.java == '17' }}
+        uses: github/super-linter@v3
+        env:
+          VALIDATE_ALL_CODEBASE: false
       - name: validate gradle wrapper
         uses: gradle/wrapper-validation-action@v1
       - name: setup jdk ${{ matrix.java }}
