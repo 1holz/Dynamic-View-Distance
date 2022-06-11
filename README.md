@@ -1,0 +1,1 @@
+Just a personal template for my minecraft mods.

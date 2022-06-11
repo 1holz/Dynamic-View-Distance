@@ -1,0 +1,34 @@
+{
+    "schemaVersion": 1,
+    "name": "Template Mod",
+    "id": "ehtemp",
+    "version": "${version}",
+    "icon": "assets/ehtemp/icon.png",
+    "description": "Lorem ipsum",
+    "authors": [
+        "Einholz"
+    ],
+    "contact": {
+        "homepage": "https://www.curseforge.com/members/albert_einholz/projects",
+        "sources": "https://github.com/Albert-Einholz"
+    },
+    "license": "Apache-2.0 Licence",
+    "environment": "*",
+    "entrypoints": {
+        "main": [
+            "de.einholz.ehtemp.TemplateMod"
+        ],
+        "client": [
+            "de.einholz.ehtemp.TemplateMod"
+        ]
+    },
+    "mixins": [],
+    "depends": {
+        "fabricloader": ">=0.14.7",
+        "fabric": "*",
+        "minecraft": "1.19.x"
+    },
+    "suggests": {
+        "another-mod": "*"
+    }
+}
