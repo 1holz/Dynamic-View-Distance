@@ -26,7 +26,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - name: check for errors.
+      - name: check for errors
         if: ${{ runner.os == 'Linux' && matrix.java == '17' }}
         uses: github/super-linter@v3.17.0
         env:
