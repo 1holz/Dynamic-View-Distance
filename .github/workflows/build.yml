@@ -28,8 +28,9 @@ jobs:
           fetch-depth: 0
       - name: check for errors
         if: ${{ runner.os == 'Linux' && matrix.java == '17' }}
-        uses: github/super-linter@v3.17.0
+        uses: github/super-linter@slim-v4
         env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VALIDATE_ALL_CODEBASE: false
       - name: validate gradle wrapper
         uses: gradle/wrapper-validation-action@v1

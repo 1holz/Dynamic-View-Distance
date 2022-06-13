@@ -6,7 +6,7 @@
     "mixins": [],
     "client": [
         "GameOptionsM",
-        "MinecraftClientM",
+        "MinecraftClientAM",
         "WorldRendererM"
     ],
     "server": [],
