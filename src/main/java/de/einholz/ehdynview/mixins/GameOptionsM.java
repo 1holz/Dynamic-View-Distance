@@ -14,8 +14,8 @@ import net.minecraft.client.option.SimpleOption;
 @Environment(EnvType.CLIENT)
 @Mixin(GameOptions.class)
 public abstract class GameOptionsM {
-    private final int fpsMin = 15;
-    private final int fpsMax = 25;
+    private final int fpsMin = 25;
+    private final int fpsMax = 45;
 
     @Inject(method = "getViewDistance()Lnet/minecraft/client/option/SimpleOption;", at = @At("RETURN"), cancellable = true)
     private void getViewDistanceM(CallbackInfoReturnable<SimpleOption<Integer>> cir) {
@@ -30,4 +30,15 @@ public abstract class GameOptionsM {
         System.out.println(ret.getValue() + " Chunks at " + fps + " FPS");
         cir.setReturnValue(ret);
     }
+
+    @Inject(method = "getClampedViewDistance()I", at = @At("HEAD"), cancellable = true)
+    private void getClampedViewDistanceM(CallbackInfoReturnable<Integer> cir) {
+        cir.setReturnValue(((GameOptionsAM) this).getServerViewDistance() > 0 ? Math.min(((GameOptions) (Object) this).getViewDistance().getValue(), ((GameOptionsAM) this).getServerViewDistance()) : ((GameOptions) (Object) this).getViewDistance().getValue());
+    }
+
+    // Probably doesn't work because GameOptions#viewDistance is private
+    //@Redirect(method = "getClampedViewDistance()I", at = @At(value = "FIELD", target = "Lnet/minecraft/client/option/GameOptions;viewDistance:Lnet/minecraft/client/option/SimpleOption", opcode = Opcodes.GETFIELD))
+    //private SimpleOption<Integer> getViewDistance(GameOptions self) {
+    //    return self.getViewDistance();
+    //}
 }

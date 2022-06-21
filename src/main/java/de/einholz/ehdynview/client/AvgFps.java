@@ -3,8 +3,11 @@ package de.einholz.ehdynview.client;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
+import net.fabricmc.api.EnvType;
 import de.einholz.ehdynview.mixins.MinecraftClientAM;
+import net.fabricmc.api.Environment;
 
+@Environment(EnvType.CLIENT)
 public abstract class AvgFps {
     private static int avgFps = 0;
     private static BlockingQueue<Integer> points = new ArrayBlockingQueue<>(5);
