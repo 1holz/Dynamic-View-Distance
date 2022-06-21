@@ -32,5 +32,8 @@
         "fabricloader": ">=0.14.7",
         "fabric": "*",
         "minecraft": "1.19.x"
+    },
+    "custom": {
+        "loom:injected_interfaces": {}
     }
 }

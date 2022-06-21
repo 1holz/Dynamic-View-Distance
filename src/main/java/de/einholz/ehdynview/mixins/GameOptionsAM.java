@@ -11,5 +11,5 @@ import net.minecraft.client.option.GameOptions;
 @Mixin(GameOptions.class)
 public interface GameOptionsAM {
     @Accessor("serverViewDistance")
-    public int getServerViewDistance();
+    int getServerViewDistance();
 }

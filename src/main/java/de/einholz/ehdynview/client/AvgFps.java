@@ -9,23 +9,24 @@ import net.fabricmc.api.Environment;
 
 @Environment(EnvType.CLIENT)
 public abstract class AvgFps {
-    private static int avgFps = 0;
-    private static BlockingQueue<Integer> points = new ArrayBlockingQueue<>(5);
+    private static final int BUFFER_SIZE = 5;
     private static final long DELAY = 1000000000; //1s
+    private static int avgFps = 0;
+    private static BlockingQueue<Integer> buffer = new ArrayBlockingQueue<>(BUFFER_SIZE);
     private static long last = System.nanoTime();
 
     public static int getFps() {
-        if (last + DELAY > System.nanoTime()) return avgFps;
+        if (last + DELAY < System.nanoTime()) return avgFps;
         last = System.nanoTime();
-        if (points.remainingCapacity() < 1) points.poll();
-        if (!points.offer(MinecraftClientAM.getCurrentFps())) System.out.println("Unable to push FPS"); //TODO add proper logger
+        if (buffer.remainingCapacity() < 1) buffer.poll();
+        if (!buffer.offer(MinecraftClientAM.getCurrentFps())) System.out.println("Unable to push FPS"); //TODO add proper logger
         int sum = 0;
-        for (Integer i : points) sum += i;
-        avgFps = sum / Math.max(points.size(), 1);
+        for (Integer i : buffer) sum += i;
+        avgFps = sum / Math.max(buffer.size(), 1);
         return avgFps;
     }
 
     public static void delay() {
-        last += points.size() * 1000000000;
+        last += buffer.size() * DELAY;
     }
 }

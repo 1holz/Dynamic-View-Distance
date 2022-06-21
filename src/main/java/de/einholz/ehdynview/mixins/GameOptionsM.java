@@ -14,11 +14,11 @@ import net.minecraft.client.option.SimpleOption;
 @Environment(EnvType.CLIENT)
 @Mixin(GameOptions.class)
 public abstract class GameOptionsM {
-    private final int fpsMin = 25;
-    private final int fpsMax = 45;
+    private final int fpsMin = 10;
+    private final int fpsMax = 20;
 
     @Inject(method = "getViewDistance()Lnet/minecraft/client/option/SimpleOption;", at = @At("RETURN"), cancellable = true)
-    private void getViewDistanceM(CallbackInfoReturnable<SimpleOption<Integer>> cir) {
+    private void getViewDistanceM(final CallbackInfoReturnable<SimpleOption<Integer>> cir) {
         SimpleOption<Integer> ret = cir.getReturnValue();
         int initView = ret.getValue();
         int fps = AvgFps.getFps();
@@ -32,7 +32,7 @@ public abstract class GameOptionsM {
     }
 
     @Inject(method = "getClampedViewDistance()I", at = @At("HEAD"), cancellable = true)
-    private void getClampedViewDistanceM(CallbackInfoReturnable<Integer> cir) {
+    private void getClampedViewDistanceM(final CallbackInfoReturnable<Integer> cir) {
         cir.setReturnValue(((GameOptionsAM) this).getServerViewDistance() > 0 ? Math.min(((GameOptions) (Object) this).getViewDistance().getValue(), ((GameOptionsAM) this).getServerViewDistance()) : ((GameOptions) (Object) this).getViewDistance().getValue());
     }
 
