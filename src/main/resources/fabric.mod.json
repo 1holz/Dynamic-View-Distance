@@ -10,9 +10,10 @@
     ],
     "contact": {
         "homepage": "https://www.curseforge.com/members/albert_einholz/projects",
-        "sources": "https://github.com/Albert-Einholz/Dynamic-View-Distance"
+        "sources": "https://github.com/Albert-Einholz/Dynamic-View-Distance",
+        "issues": "https://github.com/Albert-Einholz/Dynamic-View-Distance/issues"
     },
-    "license": "Apache-2.0 Licence",
+    "license": "Apache-2.0",
     "environment": "*",
     "entrypoints": {
         "main": [

@@ -1,21 +1,32 @@
 package de.einholz.ehdynview.mixins;
 
+import java.io.File;
+
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import de.einholz.ehdynview.client.AvgFps;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.GameOptions;
 import net.minecraft.client.option.SimpleOption;
+import net.minecraft.text.Text;
 
 @Environment(EnvType.CLIENT)
 @Mixin(GameOptions.class)
 public abstract class GameOptionsM {
-    private final int fpsMin = 10;
-    private final int fpsMax = 20;
+    private final int fpsMin = 30;
+    private final int fpsMax = 60;
+
+    @Inject(method = "<init>(Lnet/minecraft/client/MinecraftClient;Ljava/io/File;)V", at = @At("TAIL"))
+    private void removeTerrainUpdateCallback(MinecraftClient client, File optionsFile, final CallbackInfo ci) {
+        boolean is64Bit = client.is64Bit();
+        ((GameOptionsAM) this).setViewDistance(new SimpleOption<Integer>("options.renderDistance", SimpleOption.emptyTooltip(), (optionText, value) -> GameOptions.getGenericValueText(optionText, Text.translatable("options.chunks", value)), new SimpleOption.ValidatingIntSliderCallbacks(2, is64Bit && Runtime.getRuntime().maxMemory() >= 1000000000L ? 32 : 16), is64Bit ? 12 : 8, value -> {}));
+    }
 
     @Inject(method = "getViewDistance()Lnet/minecraft/client/option/SimpleOption;", at = @At("RETURN"), cancellable = true)
     private void getViewDistanceM(final CallbackInfoReturnable<SimpleOption<Integer>> cir) {
