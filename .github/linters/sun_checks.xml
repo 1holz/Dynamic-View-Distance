@@ -147,7 +147,9 @@
     <module name="ParenPad"/>
     <module name="TypecastParenPad"/>
     <module name="WhitespaceAfter"/>
-    <module name="WhitespaceAround"/>
+    <module name="WhitespaceAround">
+      <property name="allowEmptyLambdas" value="true"/>
+    </module>
 
     <!-- Modifier Checks                                    -->
     <!-- See https://checkstyle.org/config_modifiers.html -->

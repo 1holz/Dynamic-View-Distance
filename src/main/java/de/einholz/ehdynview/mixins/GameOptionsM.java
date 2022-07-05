@@ -23,7 +23,7 @@ public abstract class GameOptionsM {
     private final int fpsMax = 60;
 
     @Inject(method = "<init>(Lnet/minecraft/client/MinecraftClient;Ljava/io/File;)V", at = @At("TAIL"))
-    private void removeTerrainUpdateCallback(MinecraftClient client, File optionsFile, final CallbackInfo ci) {
+    private void removeTerrainUpdateCallback(final MinecraftClient client, final File optionsFile, final CallbackInfo ci) {
         boolean is64Bit = client.is64Bit();
         ((GameOptionsAM) this).setViewDistance(new SimpleOption<Integer>("options.renderDistance", SimpleOption.emptyTooltip(), (optionText, value) -> GameOptions.getGenericValueText(optionText, Text.translatable("options.chunks", value)), new SimpleOption.ValidatingIntSliderCallbacks(2, is64Bit && Runtime.getRuntime().maxMemory() >= 1000000000L ? 32 : 16), is64Bit ? 12 : 8, value -> {}));
     }

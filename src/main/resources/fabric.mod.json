@@ -4,7 +4,7 @@
     "id": "ehdynview",
     "version": "${version}",
     "icon": "assets/ehdynview/icon.png",
-    "description": "A minecraft mod that makes the view distance dynamic to save resourcess",
+    "description": "A minecraft mod that makes the view distance dynamic to save resources",
     "authors": [
         "Einholz"
     ],
@@ -24,6 +24,9 @@
         ],
         "server": [
             "de.einholz.ehdynview.DynView"
+        ],
+        "modmenu": [
+            "de.einholz.ehdynview.modmenu.ModMenu"
         ]
     },
     "mixins": [
@@ -34,7 +37,15 @@
         "fabric": "*",
         "minecraft": "1.19.x"
     },
+    "suggests": {
+        "modmenu": "*"
+    },
     "custom": {
-        "loom:injected_interfaces": {}
+        "loom:injected_interfaces": {},
+        "modmenu": {
+            "links": {
+                "modmenu.discord": "https://discord.gg/VUpY7a7pqF"
+            }
+        }
     }
 }
