@@ -9,6 +9,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import de.einholz.ehdynview.client.AvgFps;
+import de.einholz.ehdynview.config.ConfigMgr;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -19,9 +20,6 @@ import net.minecraft.text.Text;
 @Environment(EnvType.CLIENT)
 @Mixin(GameOptions.class)
 public abstract class GameOptionsM {
-    private final int fpsMin = 30;
-    private final int fpsMax = 60;
-
     @Inject(method = "<init>(Lnet/minecraft/client/MinecraftClient;Ljava/io/File;)V", at = @At("TAIL"))
     private void removeTerrainUpdateCallback(final MinecraftClient client, final File optionsFile, final CallbackInfo ci) {
         boolean is64Bit = client.is64Bit();
@@ -34,8 +32,8 @@ public abstract class GameOptionsM {
         int initView = ret.getValue();
         int fps = AvgFps.getFps();
         if (fps < 1) ret.setValue(2);
-        else if (fps < fpsMin) ret.setValue(Math.max(2, ret.getValue() - 1));
-        else if (fps > fpsMax) ret.setValue(Math.min(32, ret.getValue() + 1));
+        else if (fps < ConfigMgr.INSTANCE.fpsMin) ret.setValue(Math.max(2, ret.getValue() - 1));
+        else if (fps > ConfigMgr.INSTANCE.fpsMax) ret.setValue(Math.min(32, ret.getValue() + 1));
         if (initView == ret.getValue()) cir.setReturnValue(cir.getReturnValue());
         AvgFps.delay();
         System.out.println(ret.getValue() + " Chunks at " + fps + " FPS");

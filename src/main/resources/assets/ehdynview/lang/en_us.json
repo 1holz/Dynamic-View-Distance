@@ -1,0 +1,8 @@
+{
+    "config.ehdynview.category.general": "General",
+    "config.ehdynview.fps_max": "Maximal FPS",
+    "config.ehdynview.fps_max.comment": "If FPS are above this value the render distance will be increased",
+    "config.ehdynview.fps_min": "Minimal FPS",
+    "config.ehdynview.fps_min.comment": "If FPS are below this value the render distance will be decreased",
+    "config.ehdynview.titel": "Dynamic View Distance"
+}
