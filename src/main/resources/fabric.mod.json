@@ -26,7 +26,7 @@
             "de.einholz.ehdynview.DynView"
         ],
         "modmenu": [
-            "de.einholz.ehdynview.modmenu.ModMenu"
+            "de.einholz.ehdynview.config.ConfigScreen"
         ]
     },
     "mixins": [

@@ -11,10 +11,12 @@ import blue.endless.jankson.api.SyntaxError;
 import net.fabricmc.loader.api.FabricLoader;
 
 public class ConfigMgr {
-    public static Config INSTANCE = new Config();
+    private static Config instance = new Config();
     //TODO: make modid a field
     private static String path = Paths.get(FabricLoader.getInstance().getConfigDir().toString(), "ehdynview.json").toString();
     private static Jankson jankson = Jankson.builder().build();
+
+    private ConfigMgr() {}
 
     public static void load() {
         JsonObject json = new JsonObject();
@@ -23,14 +25,14 @@ public class ConfigMgr {
         } catch (SyntaxError e) {
             e.printStackTrace();
         }
-        INSTANCE = jankson.fromJson(DefConfig.setDefaults(json), Config.class);
+        instance = jankson.fromJson(DefConfig.setDefaults(json), Config.class);
     }
 
     public static void save() {
-        String result = jankson.toJson(INSTANCE).toJson(true, true);
+        String result = jankson.toJson(getInstance()).toJson(true, true);
         File file = new File(path.toString());
         try {
-            if(!file.exists()) file.createNewFile();
+            if (!file.exists()) file.createNewFile();
             FileOutputStream out = new FileOutputStream(file, false);
             out.write(result.getBytes());
             out.flush();
@@ -38,5 +40,9 @@ public class ConfigMgr {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static Config getInstance() {
+        return instance;
     }
 }

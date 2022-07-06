@@ -32,8 +32,8 @@ public abstract class GameOptionsM {
         int initView = ret.getValue();
         int fps = AvgFps.getFps();
         if (fps < 1) ret.setValue(2);
-        else if (fps < ConfigMgr.INSTANCE.fpsMin) ret.setValue(Math.max(2, ret.getValue() - 1));
-        else if (fps > ConfigMgr.INSTANCE.fpsMax) ret.setValue(Math.min(32, ret.getValue() + 1));
+        else if (fps < ConfigMgr.getInstance().getFpsMin()) ret.setValue(Math.max(2, ret.getValue() - 1));
+        else if (fps > ConfigMgr.getInstance().getFpsMax()) ret.setValue(Math.min(32, ret.getValue() + 1));
         if (initView == ret.getValue()) cir.setReturnValue(cir.getReturnValue());
         AvgFps.delay();
         System.out.println(ret.getValue() + " Chunks at " + fps + " FPS");
