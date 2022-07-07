@@ -5,9 +5,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Paths;
 
-import blue.endless.jankson.Jankson;
-import blue.endless.jankson.JsonObject;
-import blue.endless.jankson.api.SyntaxError;
+import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.Jankson;
+import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.JsonObject;
+import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.api.SyntaxError;
 import net.fabricmc.loader.api.FabricLoader;
 
 public class ConfigMgr {

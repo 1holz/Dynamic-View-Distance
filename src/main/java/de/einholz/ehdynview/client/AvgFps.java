@@ -13,20 +13,32 @@ public abstract class AvgFps {
     private static final long DELAY = 1000000000; //1s
     private static int avgFps = 0;
     private static BlockingQueue<Integer> buffer = new ArrayBlockingQueue<>(BUFFER_SIZE);
-    private static long last = System.nanoTime();
+    private static long nextOffer = System.nanoTime();
+    private static long nextPoll = System.nanoTime();
 
-    public static int getFps() {
-        if (last + DELAY < System.nanoTime()) return avgFps;
-        last = System.nanoTime();
+    public static void offer() {
+        if (nextOffer > System.nanoTime()) return;
+        nextOffer = System.nanoTime() + DELAY;
         if (buffer.remainingCapacity() < 1) buffer.poll();
         if (!buffer.offer(MinecraftClientAM.getCurrentFps())) System.out.println("Unable to push FPS"); //TODO add proper logger
+    }
+
+    public static int poll() {
         int sum = 0;
         for (Integer i : buffer) sum += i;
         avgFps = sum / Math.max(buffer.size(), 1);
-        return avgFps;
+        return getFps();
     }
 
-    public static void delay() {
-        last += buffer.size() * DELAY;
+    public static boolean pollBlocked() {
+        return nextPoll > System.nanoTime();
+    }
+
+    public static void schedule() {
+        nextPoll = System.nanoTime() + buffer.size() * DELAY;
+    }
+
+    public static int getFps() {
+        return avgFps;
     }
 }

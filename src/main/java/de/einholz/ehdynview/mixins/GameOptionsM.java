@@ -12,6 +12,7 @@ import de.einholz.ehdynview.client.AvgFps;
 import de.einholz.ehdynview.config.ConfigMgr;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.GameOptions;
 import net.minecraft.client.option.SimpleOption;
@@ -28,15 +29,16 @@ public abstract class GameOptionsM {
 
     @Inject(method = "getViewDistance()Lnet/minecraft/client/option/SimpleOption;", at = @At("RETURN"), cancellable = true)
     private void getViewDistanceM(final CallbackInfoReturnable<SimpleOption<Integer>> cir) {
+        AvgFps.offer();
         SimpleOption<Integer> ret = cir.getReturnValue();
+        if (MinecraftClientAM.getCurrentFps() < 1) ret.setValue(2);
+        if (AvgFps.pollBlocked() || MinecraftClientAM.getCurrentFps() < 1) cir.setReturnValue(ret);
+        int fps = AvgFps.poll();
         int initView = ret.getValue();
-        int fps = AvgFps.getFps();
-        if (fps < 1) ret.setValue(2);
-        else if (fps < ConfigMgr.getInstance().getFpsMin()) ret.setValue(Math.max(2, ret.getValue() - 1));
+        if (fps < ConfigMgr.getInstance().getFpsMin()) ret.setValue(Math.max(2, ret.getValue() - 1));
         else if (fps > ConfigMgr.getInstance().getFpsMax()) ret.setValue(Math.min(32, ret.getValue() + 1));
-        if (initView == ret.getValue()) cir.setReturnValue(cir.getReturnValue());
-        AvgFps.delay();
-        System.out.println(ret.getValue() + " Chunks at " + fps + " FPS");
+        if (initView != ret.getValue()) AvgFps.schedule();
+        if (FabricLoader.getInstance().isDevelopmentEnvironment() && initView != ret.getValue()) System.out.println("From " + initView + " to " + ret.getValue() + " Chunks at " + fps + " FPS");
         cir.setReturnValue(ret);
     }
 

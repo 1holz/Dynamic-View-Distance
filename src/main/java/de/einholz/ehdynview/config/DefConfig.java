@@ -1,7 +1,7 @@
 package de.einholz.ehdynview.config;
 
-import blue.endless.jankson.JsonObject;
-import blue.endless.jankson.JsonPrimitive;
+import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.JsonObject;
+import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.JsonPrimitive;
 import net.minecraft.text.Text;
 
 public class DefConfig {
