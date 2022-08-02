@@ -149,6 +149,7 @@
     <module name="WhitespaceAfter"/>
     <module name="WhitespaceAround">
       <property name="allowEmptyLambdas" value="true"/>
+      <property name="allowEmptyMethods" value="true"/>
     </module>
 
     <!-- Modifier Checks                                    -->

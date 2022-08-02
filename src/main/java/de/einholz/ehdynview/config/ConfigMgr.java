@@ -10,13 +10,11 @@ import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.JsonObject;
 import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.api.SyntaxError;
 import net.fabricmc.loader.api.FabricLoader;
 
-public class ConfigMgr {
+public final class ConfigMgr {
     private static Config instance = new Config();
     //TODO: make modid a field
     private static String path = Paths.get(FabricLoader.getInstance().getConfigDir().toString(), "ehdynview.json").toString();
     private static Jankson jankson = Jankson.builder().build();
-
-    private ConfigMgr() {}
 
     public static void load() {
         JsonObject json = new JsonObject();

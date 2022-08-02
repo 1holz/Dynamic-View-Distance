@@ -8,24 +8,20 @@ import net.fabricmc.api.Environment;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
 
-public class DynView implements ModInitializer, ClientModInitializer, DedicatedServerModInitializer {
-	@Override
-	public void onInitialize() {
-		
-	}
+public final class DynView implements ModInitializer, ClientModInitializer, DedicatedServerModInitializer {
+    @Override
+    public void onInitialize() {}
 
-	@Environment(EnvType.CLIENT)
-	@Override
-	public void onInitializeClient() {
-		if (FabricLoader.getInstance().isModLoaded("cloth-config")) {
-			ConfigMgr.load();
-			ConfigMgr.save();
-		}
-	}
+    @Environment(EnvType.CLIENT)
+    @Override
+    public void onInitializeClient() {
+        if (FabricLoader.getInstance().isModLoaded("cloth-config")) {
+            ConfigMgr.load();
+            ConfigMgr.save();
+        }
+    }
 
 	@Environment(EnvType.SERVER)
 	@Override
-	public void onInitializeServer() {
-		
-	}
+	public void onInitializeServer() {}
 }
