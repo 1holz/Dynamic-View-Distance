@@ -32,7 +32,11 @@ public abstract class GameOptionsM {
         AvgFps.offer();
         SimpleOption<Integer> ret = cir.getReturnValue();
         if (MinecraftClientAM.getCurrentFps() < 1) ret.setValue(2);
-        if (AvgFps.pollBlocked() || MinecraftClientAM.getCurrentFps() < 1) cir.setReturnValue(ret);
+        if (AvgFps.pollBlocked() || MinecraftClientAM.getCurrentFps() < 1) {
+            cir.setReturnValue(ret);
+            return;
+            //System.out.println("FAIL");
+        }
         int fps = AvgFps.poll();
         int initView = ret.getValue();
         if (fps < ConfigMgr.getInstance().getFpsMin()) ret.setValue(Math.max(2, ret.getValue() - 1));
