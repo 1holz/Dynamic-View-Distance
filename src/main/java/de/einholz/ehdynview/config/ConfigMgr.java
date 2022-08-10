@@ -19,8 +19,8 @@ public final class ConfigMgr {
     public static void load() {
         JsonObject json = new JsonObject();
         try {
-            json = jankson.load(path);
-        } catch (SyntaxError e) {
+            json = jankson.load(new File(path));
+        } catch (IOException | SyntaxError e) {
             e.printStackTrace();
         }
         instance = jankson.fromJson(DefConfig.setDefaults(json), Config.class);

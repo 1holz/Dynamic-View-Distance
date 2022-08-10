@@ -35,7 +35,6 @@ public abstract class GameOptionsM {
         if (AvgFps.pollBlocked() || MinecraftClientAM.getCurrentFps() < 1) {
             cir.setReturnValue(ret);
             return;
-            //System.out.println("FAIL");
         }
         int fps = AvgFps.poll();
         int initView = ret.getValue();
