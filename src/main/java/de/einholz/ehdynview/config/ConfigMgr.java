@@ -16,6 +16,8 @@ public final class ConfigMgr {
     private static String path = Paths.get(FabricLoader.getInstance().getConfigDir().toString(), "ehdynview.json").toString();
     private static Jankson jankson = Jankson.builder().build();
 
+    private ConfigMgr() {}
+
     public static void load() {
         JsonObject json = new JsonObject();
         try {
