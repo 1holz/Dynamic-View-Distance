@@ -2,7 +2,7 @@ package de.einholz.ehdynview.config;
 
 import de.einholz.ehdynview.client.AvgFps;
 
-public class Config {
+public final class Config {
     //TODO: should comments stay? they can't be translated or I just don't know how
     //@Comment("If FPS are above this value the render distance will be increased (default=60)")
     private int fpsMax = DefConfig.FPS_MAX_VALUE;

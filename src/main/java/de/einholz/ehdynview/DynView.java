@@ -31,7 +31,7 @@ public final class DynView implements ModInitializer, ClientModInitializer, Dedi
         }
     }
 
-	@Environment(EnvType.SERVER)
-	@Override
-	public void onInitializeServer() {}
+    @Environment(EnvType.SERVER)
+    @Override
+    public void onInitializeServer() {}
 }

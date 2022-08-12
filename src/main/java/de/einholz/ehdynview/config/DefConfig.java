@@ -14,6 +14,8 @@ public final class DefConfig {
     public static final int SAMPLING_PERIOD_VALUE = 2000000000; // in nanoseconds here: 2s
     public static final Text SAMPLING_PERIOD_COMMENT = Text.translatable("config.ehdynview.sampling_period.comment");
 
+    private DefConfig() {}
+
     public static JsonObject setDefaults(final JsonObject json) {
         // Defaults
         json.putDefault("fpsMax", new JsonPrimitive((Integer) FPS_MAX_VALUE), null);
