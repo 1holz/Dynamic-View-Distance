@@ -11,7 +11,7 @@ import net.fabricmc.loader.api.FabricLoader;
 public final class DynView implements ModInitializer, ClientModInitializer, DedicatedServerModInitializer {
     @Override
     public void onInitialize() {
-        if (FabricLoader.getInstance().isModLoaded("nochatreports")) {
+        if (!FabricLoader.getInstance().isModLoaded("nochatreports")) {
             System.out.println("===================================");
             System.out.println("You don't have No Chat Reports installed!");
             System.out.println("This way players can unjustifiedly get banned from Minecraft.");
