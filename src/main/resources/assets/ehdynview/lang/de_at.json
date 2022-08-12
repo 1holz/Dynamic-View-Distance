@@ -1,1 +1,12 @@
-{}
+{
+    "config.ehdynview.category.general": "Allgemein",
+    "config.ehdynview.fps_max": "Maximale FPS",
+    "config.ehdynview.fps_max.comment": "Falls die FPS über diesem Wert sind wird die Sichtweite erhöht",
+    "config.ehdynview.fps_min": "Minimale FPS",
+    "config.ehdynview.fps_min.comment": "Falls die FPS unter diesem Wert sind wird die Sichtweite reduziert",
+    "config.ehdynview.buffer_size": "Puffergröße",
+    "config.ehdynview.buffer_size.comment": "Größe des Puffers",
+    "config.ehdynview.sampling_period": "Abtastinterval",
+    "config.ehdynview.sampling_period.comment": "Wie oft FPS Werte dem Puffer angeboten werden (in Nanosekunden)",
+    "config.ehdynview.titel": "Dynamische Sichtweite"
+}
