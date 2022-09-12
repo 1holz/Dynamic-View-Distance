@@ -37,7 +37,7 @@ public final class ConfigScreen implements ModMenuApi {
                 .setSaveConsumer(v -> ConfigMgr.getInstance().setBufferSize(v))
                 .build());
             general.addEntry(entryBuilder
-                .startIntField(Text.translatable("config.ehdynview.sampling_period"), ConfigMgr.getInstance().getSamplingPeriod())
+                .startLongField(Text.translatable("config.ehdynview.sampling_period"), ConfigMgr.getInstance().getSamplingPeriod())
                 .setDefaultValue(DefConfig.SAMPLING_PERIOD_VALUE)
                 .setTooltip(DefConfig.SAMPLING_PERIOD_COMMENT)
                 .setSaveConsumer(v -> ConfigMgr.getInstance().setSamplingPeriod(v))

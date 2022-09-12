@@ -9,7 +9,7 @@ public final class Config {
     //@Comment("If FPS are below this value the render distance will be decreased (default=30)")
     private int fpsMin = DefConfig.FPS_MIN_VALUE;
     private int bufferSize = DefConfig.BUFFER_SIZE_VALUE;
-    private int samplingPeriod = DefConfig.SAMPLING_PERIOD_VALUE;
+    private long samplingPeriod = DefConfig.SAMPLING_PERIOD_VALUE;
 
     public int getFpsMax() {
         return fpsMax;
@@ -36,11 +36,11 @@ public final class Config {
         AvgFps.reinitBuffer();
     }
 
-    public int getSamplingPeriod() {
+    public long getSamplingPeriod() {
         return samplingPeriod;
     }
 
-    public void setSamplingPeriod(int samplingRate) {
+    public void setSamplingPeriod(long samplingRate) {
         this.samplingPeriod = samplingRate;
     }
 }
