@@ -1,4 +1,7 @@
-![Custom checks for Java](https://github.com/Albert-Einholz/Dynamic-View-Distance/workflows/main.yml/badge.svg)
+# Dynamic View Distance
+
+[![Gradle](https://github.com/Albert-Einholz/Dynamic-View-Distance/actions/workflows/gradle.yml/badge.svg)](https://github.com/Albert-Einholz/Dynamic-View-Distance/actions/workflows/gradle.yml)
+[![Linter](https://github.com/Albert-Einholz/Dynamic-View-Distance/actions/workflows/linter.yml/badge.svg)](https://github.com/Albert-Einholz/Dynamic-View-Distance/actions/workflows/linter.yml)
 
 Dynamic View Distance is a Minecraft mod that makes the view distance dynamic to save resources. The current version is intended to be used only on the client.
 

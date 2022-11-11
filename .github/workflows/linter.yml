@@ -1,0 +1,26 @@
+name: Linter
+on: [pull_request, push, workflow_dispatch, ]
+
+jobs:
+  build:
+    name: Super Linter
+    strategy:
+      matrix:
+        #java: [17]
+        os: [
+          ubuntu-latest,
+          #windows-latest,
+          #macos-latest,
+        ]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v3
+        #with:
+        #  fetch-depth: 0
+      - name: check for errors
+        #if: ${{ runner.os == 'Linux' && matrix.java == '17' }}
+        uses: github/super-linter@v4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VALIDATE_ALL_CODEBASE: ${{ github.event_name == 'workflow_dispatch' }}
