@@ -1,3 +1,5 @@
+![Custom checks for Java](https://github.com/Albert-Einholz/Dynamic-View-Distance/workflows/main.yml/badge.svg)
+
 Dynamic View Distance is a Minecraft mod that makes the view distance dynamic to save resources. The current version is intended to be used only on the client.
 
 If FPS fall below the minimum FPS threshold (on average for 5 seconds) the render distance is decreased and vice versa for maximum FPS.
